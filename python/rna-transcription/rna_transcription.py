@@ -1,11 +1,6 @@
 
 
-_COMPLEMENT = {
-    'G': 'C',
-    'C': 'G',
-    'T': 'A',
-    'A': 'U',
-}
+_COMPLEMENT = dict(zip('GCTA', 'CGAU'))
 
 
 def to_rna(dna):
