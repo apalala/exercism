@@ -4,4 +4,4 @@ _LETTERS = set(ascii_lowercase)
 
 
 def is_pangram(sentence):
-    return  _LETTERS == set(sentence.lower()) & _LETTERS
+    return  _LETTERS <= set(sentence.lower())
