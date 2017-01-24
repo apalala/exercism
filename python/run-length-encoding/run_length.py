@@ -3,17 +3,15 @@ from itertools import groupby
 
 def encode(text):
     seqs = [''.join(g) for _, g in groupby(text)]
-    result = []
-    for seq in seqs:
-        if len(seq) == 1:
-            result.append(seq)
-        else:
-            result.append('%d%s' % (len(seq), seq[0]))
-    return ''.join(result)
+
+    codes = [(str(len(s)) if len(s) > 1 else '', s[0]) for s in seqs]
+
+    return ''.join('%s%s' % (n, c) for n, c in codes)
 
 
 def decode(text):
-    code_char = re.split('(\D)', text)[1:]
-    print(code_char)
-    it = iter(code_char)
-    return ''.join(int(n) * c for n, c in zip(it, it))
+    code_char = re.findall('\d*\D', text)
+
+    codes = [(int(c[:-1] or '1'), c[-1]) for c in code_char]
+
+    return ''.join(n * c for n, c in codes)
