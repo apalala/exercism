@@ -1,12 +1,14 @@
 from enum import IntEnum
 from enum import unique
 
+
 @unique
 class Bearing(IntEnum):
     NORTH = 0
     EAST = 1
     SOUTH = 2
     WEST = 3
+
 
 NORTH = Bearing.NORTH
 EAST = Bearing.EAST
