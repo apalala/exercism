@@ -1,4 +1,4 @@
 
 
 def hello(name=None):
-    return 'Hello, {}!'.format(name if name else 'World')
+    return 'Hello, %s!' % (name or 'World')
