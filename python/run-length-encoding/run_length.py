@@ -12,6 +12,6 @@ def encode(text):
 def decode(text):
     code_char = re.findall('\d*\D', text)
 
-    codes = [(int(c[:-1] or '1'), c[-1]) for c in code_char]
+    codes = [(c[:-1], c[-1]) for c in code_char]
 
-    return ''.join(n * c for n, c in codes)
+    return ''.join(int(n or '1') * c for n, c in codes)
