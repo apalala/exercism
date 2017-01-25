@@ -1,41 +1,59 @@
 import calendar
 from datetime import date
-from datetime import timedelta
 
 
-WEEKDAY_NUMBER = dict(zip(calendar.day_name, range(len(calendar.day_name))))
-TEENTH_DAYS = set(range(13, 20))
+_WEEKDAY_NUMBER = dict(
+    zip(
+        calendar.day_name,
+        range(len(calendar.day_name))
+    )
+)
+_TEENTH_DAYS = set(range(13, 19 + 1))
 
 
 class MeetupDayException(Exception):
     pass
 
 
-def meetup_day(year, month, weekday_name, which):
+def _nth_meetup_day(year, month, weekday, n):
     first_weekday, days_in_month = calendar.monthrange(year, month)
-    target_days = set(range(1 + days_in_month))
 
-    weekday = WEEKDAY_NUMBER[weekday_name]
-    weekday_offset = (7 + weekday - first_weekday) % 7
+    offset = (7 + weekday - first_weekday) % 7
+    day = 1 + offset + (n - 1) * 7
+
+    if day > days_in_month:
+        raise MeetupDayException('Meetup day is out of range for month')
+
+    return date(year, month, day)
+
+
+def _last_meetup_day(year, month, weekday):
+    first_weekday, days_in_month = calendar.monthrange(year, month)
+
+    last_weekday = (first_weekday + days_in_month - 1) % 7
+    offset = (7 + last_weekday - weekday) % 7
+
+    return date(year, month, days_in_month - offset)
+
+
+def _teenth_meetup_day(year, month, weekday):
+    first_weekday, _ = calendar.monthrange(year, month)
+
+    offset = (7 + weekday - first_weekday) % 7
+    day = 1 + offset + 7
+    if day not in _TEENTH_DAYS:
+        day += 7
+        assert day in _TEENTH_DAYS
+
+    return date(year, month, day)
+
+
+def meetup_day(year, month, weekday_name, which):
+    weekday = _WEEKDAY_NUMBER[weekday_name]
 
     if which == 'last':
-        weeks = [5, 4, 3]
+        return _last_meetup_day(year, month, weekday)
     elif which == 'teenth':
-        weeks = [1, 2]
-        target_days = TEENTH_DAYS
+        return _teenth_meetup_day(year, month, weekday)
     else:
-        ordinal = int(which[0])
-        weeks = [ordinal - 1]
-
-    first_of_month = date(year=year, month=month, day=1)
-    for week in weeks:
-        result = first_of_month + timedelta(days=weekday_offset + week * 7)
-        if result.month == month and result.day in target_days:
-            return result
-
-    raise MeetupDayException(
-        'Cannot find {} {} in {}/{}'.format(
-            which, weekday_name, month, year
-        )
-    )
-
+        return _nth_meetup_day(year, month, weekday, int(which[0]))
