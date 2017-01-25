@@ -77,6 +77,7 @@ def say_small(number):
 
     if number < 20:
         return FIRST20[number]
-    if not number % 10:
+    elif not number % 10:
         return TENS[number // 10]
-    return TENS[number // 10] + '-' + FIRST20[number % 10]
+    else:
+        return TENS[number // 10] + '-' + FIRST20[number % 10]
