@@ -5,8 +5,8 @@ def difference(n):
 
 
 def square_of_sum(n):
-    return sum(range(1, n + 1)) ** 2
+    return (n * (n + 1) // 2) ** 2
 
 
 def sum_of_squares(n):
-    return sum(i**2 for i in range(1, n + 1))
+    return n * (n + 1) * (2 * n + 1) // 6
