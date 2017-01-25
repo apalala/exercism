@@ -34,6 +34,7 @@ TENS = [
     'ninety',
 ]
 
+
 def say(number):
     if number < 0:
         raise AttributeError('Number is negative')
@@ -60,7 +61,7 @@ def say(number):
     hundreds = number // 10**2
     number %= 10**2
     if hundreds:
-        spelled += say_small(hundreds) + ' hundred '
+        spelled += say(hundreds) + ' hundred '
 
     if not spelled or number:
         if spelled:
