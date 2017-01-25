@@ -11,26 +11,31 @@ class MeetupDayException(Exception):
     pass
 
 
-def meetup_day(year, month, weekday_name, kind):
-    first_of_month = date(year=year, month=month, day=1)
-    weekday = WEEKDAY_NUMBER[weekday_name]
-
+def meetup_day(year, month, weekday_name, which):
     first_weekday, days_in_month = calendar.monthrange(year, month)
     target_days = set(range(1 + days_in_month))
-    offset = (7 + weekday - first_weekday) % 7
 
-    if kind == 'last':
+    weekday = WEEKDAY_NUMBER[weekday_name]
+    weekday_offset = (7 + weekday - first_weekday) % 7
+
+    if which == 'last':
         weeks = [5, 4, 3]
-    elif kind == 'teenth':
+    elif which == 'teenth':
         weeks = [1, 2]
         target_days = TEENTH_DAYS
     else:
-        weeks = [int(kind[0]) - 1]
+        ordinal = int(which[0])
+        weeks = [ordinal - 1]
 
+    first_of_month = date(year=year, month=month, day=1)
     for week in weeks:
-        result = first_of_month + timedelta(days=offset + week * 7)
+        result = first_of_month + timedelta(days=weekday_offset + week * 7)
         if result.month == month and result.day in target_days:
             return result
 
-    raise MeetupDayException('Cannot find {} {} in {}/'.format(kind, weekday_name, month, year))
+    raise MeetupDayException(
+        'Cannot find {} {} in {}/{}'.format(
+            which, weekday_name, month, year
+        )
+    )
 
