@@ -15,6 +15,17 @@ class MeetupDayException(Exception):
     pass
 
 
+def meetup_day(year, month, weekday_name, which):
+    weekday = _WEEKDAY_NUMBER[weekday_name]
+
+    if which == 'last':
+        return _last_meetup_day(year, month, weekday)
+    elif which == 'teenth':
+        return _teenth_meetup_day(year, month, weekday)
+    else:
+        return _nth_meetup_day(year, month, weekday, int(which[0]))
+
+
 def _nth_meetup_day(year, month, weekday, n):
     first_weekday, days_in_month = calendar.monthrange(year, month)
 
@@ -46,14 +57,3 @@ def _teenth_meetup_day(year, month, weekday):
         assert day in _TEENTH_DAYS
 
     return date(year, month, day)
-
-
-def meetup_day(year, month, weekday_name, which):
-    weekday = _WEEKDAY_NUMBER[weekday_name]
-
-    if which == 'last':
-        return _last_meetup_day(year, month, weekday)
-    elif which == 'teenth':
-        return _teenth_meetup_day(year, month, weekday)
-    else:
-        return _nth_meetup_day(year, month, weekday, int(which[0]))
