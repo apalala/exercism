@@ -11,7 +11,7 @@ def _words(phrase):
         if not phrase[i].isalpha():
             i += 1
         else:
-            j = i
+            j = i + 1
             while j < len(phrase) and phrase[j].isupper():
                 j += 1
             while j < len(phrase) and phrase[j].islower():
