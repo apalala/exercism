@@ -27,8 +27,7 @@ class SpaceAge():
             return lambda self: round(self._on_earth_years() / ratio, 2)
 
         for planet, ratio in PLANET_YEAR_RATIO.items():
-            method = make_method(ratio)
-            setattr(cls, 'on_%s' % planet.lower(), method)
+            setattr(cls, 'on_%s' % planet.lower(), make_method(ratio))
 
     def __getattribute__(self, item):
         if item.startswith('on_') and item[3:] in PLANET_YEAR_RATIO:
