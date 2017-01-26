@@ -9,4 +9,4 @@ def sieve(limit):
             continue
         not_prime.update(n * k for k in range(2, (limit + n) // n))
 
-    return list(sorted(set(numbers) - not_prime))
+    return sorted(set(numbers) - not_prime)
