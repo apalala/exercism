@@ -34,44 +34,49 @@ TENS = [
     'ninety',
 ]
 
+UNITS = [
+    (12, 'trillion'),
+    (9, 'billion'),
+    (6, 'million'),
+    (3, 'thousand'),
+    (2, 'hundred'),
+]
+
+MAX_NUMBER = 10**UNITS[0][0] - 1
+
 
 def say(number):
     if number < 0:
         raise AttributeError('Number is negative')
-    if number >= 10**12 - 1:
+    if number >= MAX_NUMBER:
         raise AttributeError('Number is too large')
 
-    spelled = ''
+    return _say_units(number)
 
-    billions = number // 10**9
-    number %= 10**9
-    if billions:
-        spelled += say(billions) + ' billion '
 
-    millions = number // 10**6
-    number %= 10**6
-    if millions:
-        spelled += say(millions) + ' million '
+def _say_units(number, units=UNITS):
+    spelled = []
 
-    thousands = number // 10**3
-    number %= 10**3
-    if thousands:
-        spelled += say(thousands) + ' thousand '
+    for p, name in units:
+        power10 = 10**p
+        units_number = number // power10
+        number %= power10
 
-    hundreds = number // 10**2
-    number %= 10**2
-    if hundreds:
-        spelled += say(hundreds) + ' hundred '
+        if not units_number:
+            continue
+
+        s = _say_units(units_number, units=units[1:])  # generic, so it works with other currencies
+        spelled += ['%s %s' % (s, name)]
 
     if not spelled or number:
         if spelled:
-            spelled += 'and '
-        spelled += say_small(number)
+            spelled += ['and']
+        spelled += [_say_small_number(number)]
 
-    return spelled.strip()
+    return ' '.join(spelled)
 
 
-def say_small(number):
+def _say_small_number(number):
     assert number < 100, number
     number = int(number)
 
