@@ -1,5 +1,5 @@
-import re
 from enum import IntEnum
+from itertools import islice
 
 
 class SubListType(IntEnum):
@@ -18,6 +18,10 @@ UNEQUAL = SubListType.UNEQUAL
 def check_lists(alist, blist):
     if alist == blist:
         return EQUAL
+    elif not alist:
+        return SUBLIST
+    elif not blist:
+        return SUPERLIST
     elif len(alist) < len(blist) and _has_sublist(alist, blist):
         return SUBLIST
     elif len(alist) > len(blist) and _has_sublist(blist, alist):
@@ -27,8 +31,8 @@ def check_lists(alist, blist):
 
 
 def _has_sublist(sub, alist):
-    return re.match('.*' + _tostr(sub), _tostr(alist))
-
-
-def _tostr(seq):
-    return '竜'.join(str(d) for d in seq)
+    return any(
+        sub[0] == alist[i] and
+        all(s == a for a, s in zip(sub, islice(alist, i, i + len(sub))))
+        for i in range(1 + len(alist) - len(sub))
+    )
