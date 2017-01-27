@@ -1,17 +1,26 @@
 # after studying solution by @iltrof on EXERCISM
+# optimized with `yield from` instead of list concatenations
 from math import sqrt
 
 
 def prime_factors(number):
-    if number < 2:
-        return []
-    elif number % 2 == 0:
-        return [2] + prime_factors(number // 2)
-    else:
-        for p in range(3, int(sqrt(number)) + 1, 2):
-            quotient, remainder = divmod(number, p)
+    def factors(n):
+        if n < 2:
+            return
+
+        if n % 2 == 0:
+            yield 2
+            yield from factors(n // 2)
+            return
+
+        for p in range(3, int(sqrt(n)) + 1, 2):
+            quotient, remainder = divmod(n, p)
             if remainder:
                 continue
-            return [p] + prime_factors(quotient)
+            yield p
+            yield from factors(quotient)
+            break
+        else:
+            yield n
 
-        return [number]
+    return list(factors(number))
