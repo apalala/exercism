@@ -1,5 +1,4 @@
 from enum import IntEnum
-from itertools import islice
 
 
 class SubListType(IntEnum):
@@ -18,21 +17,18 @@ UNEQUAL = SubListType.UNEQUAL
 def check_lists(alist, blist):
     if alist == blist:
         return EQUAL
-    elif not alist:
+    elif _has_sublist(alist, blist):
         return SUBLIST
-    elif not blist:
-        return SUPERLIST
-    elif len(alist) < len(blist) and _has_sublist(alist, blist):
-        return SUBLIST
-    elif len(alist) > len(blist) and _has_sublist(blist, alist):
+    elif _has_sublist(blist, alist):
         return SUPERLIST
     else:
         return UNEQUAL
 
 
 def _has_sublist(sub, alist):
-    return any(
-        sub[0] == alist[i] and
-        all(s == a for a, s in zip(sub, islice(alist, i, i + len(sub))))
-        for i in range(1 + len(alist) - len(sub))
-    )
+    for i in range(1 + len(alist) - len(sub)):
+        for j, s in enumerate(sub):
+            if s != alist[i + j]:
+                break
+        else:
+            return True
