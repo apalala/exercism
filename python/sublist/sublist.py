@@ -1,17 +1,9 @@
-from enum import IntEnum
 
 
-class SubListType(IntEnum):
-    SUBLIST = 1
-    SUPERLIST = 2
-    EQUAL = 3
-    UNEQUAL = 4
-
-
-SUBLIST = SubListType.SUBLIST
-SUPERLIST = SubListType.SUPERLIST
-EQUAL = SubListType.EQUAL
-UNEQUAL = SubListType.UNEQUAL
+SUBLIST = 1
+SUPERLIST = 2
+EQUAL = 3
+UNEQUAL = 4
 
 
 def check_lists(alist, blist):
