@@ -18,12 +18,6 @@ __primes = [
 
 
 def prime_factors(number):
-    for i in range(10000):
-        _prime_factors(number)
-    return _prime_factors(number)
-
-
-def _prime_factors(number):
     def factors(n):
         if n < 2:
             return
