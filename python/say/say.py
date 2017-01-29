@@ -45,6 +45,9 @@ UNITS = [
 MAX_NUMBER = 10**UNITS[0][0] - 1
 
 
+JOIN_WORD = 'and'
+
+
 def say(number):
     if number < 0:
         raise AttributeError('Number is negative')
@@ -58,20 +61,22 @@ def _say_units(number, units=UNITS):
     spelled = []
 
     for p, name in units:
-        power10 = 10**p
-        units_number = number // power10
-        number %= power10
+        units_number, number = divmod(number, 10**p)
 
         if not units_number:
             continue
 
-        s = _say_units(units_number, units=units[1:])  # generic, so it works with other currencies
-        spelled += ['%s %s' % (s, name)]
+        spelled += [
+            _say_units(units_number, units=units[1:]),
+            name,
+        ]
 
-    if not spelled or number:
-        if spelled:
-            spelled += ['and']
+    if number:
+        if spelled and JOIN_WORD:
+            spelled += [JOIN_WORD]
         spelled += [_say_small_number(number)]
+    elif not spelled:
+        spelled = [FIRST20[0]]
 
     return ' '.join(spelled)
 
