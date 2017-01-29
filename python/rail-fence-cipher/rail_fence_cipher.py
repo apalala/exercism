@@ -27,4 +27,4 @@ def _zigzag(n, limit=None):
             i = -i + 1
 
         if limit:
-            limit -=1
+            limit -= 1
