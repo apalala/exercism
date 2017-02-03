@@ -1,0 +1,50 @@
+from itertools import permutations
+from itertools import product
+
+WHO = ('Englishman', 'Spaniard,', 'Ukranian', 'Japanese', 'Norweigan')
+COLOR = ('red', 'green', 'ivory', 'yellow', 'blue')
+OWNS= ('dog', 'snails', 'fox', 'horse', 'zebra')
+DRINKS = ('coffee', 'tea', 'milk', 'orange juice', 'water')
+SMOKES = ('Old Gold', 'Kool', 'Chesterfield', 'Lucky Strike', 'Parliament')
+
+
+
+def solution():
+    pwho = permutations(WHO)
+    pcolor = permutations(COLOR)
+    powns = permutations(OWNS)
+    pdrinks = permutations(DRINKS)
+    psmokes = permutations(SMOKES)
+    who, color, owns, drinks, smokes = [next(p) for p in (pwho, pcolor, powns, pdrinks, psmokes)]
+    while True:
+        if who.index('Norweigan') != 0:  # 15
+            who = next(pwho)
+        elif drinks.index('milk') != 2:  # 9
+            drinks = next(drinks)
+        # 2
+        assert who[color.index('red')] == 'Englishman'
+        # 3
+        assert who[owns.index('dog')] == 'Spaniard'
+        # 4
+        assert drinks[color.index('green')] == 'coffee'
+        # 5
+        assert drinks[who.index('Ukranian')] == 'tea'
+        # 6
+        if 1 != abs(color.index('green') - color.index('ivory')):
+            color = next(pcolor)
+
+    return True
+
+
+    # for i, conf in enumerate(configurations):
+    #     print(i)
+    #     try:
+    #         validate(*conf)
+    #         break
+    #     except AssertionError:
+    #         pass
+    # else:
+    #     raise LookupError('No valid configuration')
+    # who, color, owns, drinks, smokes = conf
+    #
+    # print(who[drinks.index('water')], who[owns.index('zebra')])
