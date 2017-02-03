@@ -7,6 +7,23 @@ DRINKS = ('coffee', 'milk', 'tea', 'orange juice', 'water')
 SMOKES = ('Chesterfield', 'Kool', 'Lucky Strike', 'Old Gold', 'Parliament')
 
 
+def solution():
+    houses = [new_house(n) for n in range(5)]
+
+    search_solution(houses)
+    if not defined(houses):
+        # these two rules are cheats to make it converge
+        enforce(houses, n=1, who='Ukranian')
+        enforce(houses, n=4, color='green')
+        search_solution(houses)
+    assert defined(houses)
+
+    drinks_water = [first(h['who']) for h in houses if {'water'} & h['drinks']]
+    owns_zebra = [first(h['who']) for h in houses if {'zebra'} & h['owns']]
+
+    return (drinks_water[0], owns_zebra[0])
+
+
 def new_house(n):
     return dict(
         n={n},
@@ -22,16 +39,15 @@ def first(coll):
     return next(iter(coll))
 
 
-def defined(house):
-    values = [len(v) if isinstance(v, set) else 1 for v in house.values()]
-    return min(values ) == 1 and max(values) == 1
+def defined(houses):
+    return all(len(v) == 1 for h in houses for v in h.values())
 
 
 def remove(house, **kwargs):
     for k, v in kwargs.items():
         if k == 'n':
             continue
-        if v in house[k]:
+        if v in house[k] and {v} != house[k]:
             print('remove', k, repr(v), 'from', house['n'])
             house[k] -= {v}
 
@@ -45,16 +61,6 @@ def enforce(houses, **kwargs):
                if av not in house[ak]:
                    remove(house, **{bk: bv})
 
-def enforce_not(houses, **kwargs):
-    for house in houses:
-        for ak, av in kwargs.items():
-            for bk, bv in kwargs.items():
-                if ak == bk:
-                    continue
-                if av not in house[ak] and bv in house[bk]:
-                    house[bk] = {bv}
-
-
 def get(houses, nums, key):
     result = set()
     for i in nums:
@@ -63,20 +69,19 @@ def get(houses, nums, key):
     return result
 
 
-def solution():
-    # 1
-    houses = [new_house(n) for n in range(5)]
-    count = 0
+def print_houses(houses):
+    print('###')
+    for i, h in enumerate(houses):
+        print(i)
+        for v in h.values():
+            print('', v)
+
+
+def search_solution(houses):
     prev = {}
     while houses != prev:
         prev = deepcopy(houses)
-        count += 1
-        print('#', count)
-        for i, h in enumerate(houses):
-            print(i)
-            for v in h.values():
-                print('', v)
-        print()
+        print_houses(houses)
         # 2
         enforce(houses, color='red', who='Englishman')
         # 3
@@ -124,9 +129,6 @@ def solution():
             if 'Norweigan' not in get(houses, [i - 1, i + 1], 'who'):
                 remove(house, color='blue')
 
-        #11
-        enforce_not(houses, owns='fox', smokes='Chesterfield')
-
         for i, house in enumerate(houses):
             for k in set(house) - {'n'}:
                 if len(house[k]) == 1:
@@ -141,6 +143,4 @@ def solution():
                         house[k] = {v}
                         break
 
-    drinks_water = [list(h['who'])[0] for h in houses if {'water'} & h['drinks']]
-    owns_zebra = [list(h['who'])[0] for h in houses if {'zebra'} & h['owns']]
-    return (drinks_water[0], owns_zebra[0])
+    print_houses(houses)
