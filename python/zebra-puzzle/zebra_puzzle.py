@@ -279,12 +279,10 @@ def known_facts():
     # 12
     h1 = var()
     h2 = var()
-    h3 = var()
     facts += [
         (R.SMOKES, h1, val('Kools')),
-        (R.OWNS, h3, val('horse')),
+        (R.OWNS, h2, val('horse')),
         (R.NEXT, h1, h2),
-        (R.NEXT, h2, h3),
     ]
     # 13
     h = var()
