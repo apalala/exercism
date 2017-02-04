@@ -28,6 +28,12 @@ def solution():
 
 
 def _find_solutions():
+    def is_right_of(x, y):
+        return x - y == 1
+
+    def is_next_to(x, y):
+        return abs(x - y) == 1
+
     house_numbers = range(5)
     first, second, middle, third, last = house_numbers
 
@@ -36,13 +42,13 @@ def _find_solutions():
         Houses(color=color, who=who, drink=drink, smokes=smokes, pet=pet)
         for color in (Color(*c) for c in orderings)
         if (
-            _right_of(color.green, color.ivory)
+            is_right_of(color.green, color.ivory)
         )
         for who in (Who(*w) for w in orderings)
         if (
             who.englishman == color.red and
             who.norwegian == first and
-            _next_to(who.norwegian, color.blue)
+            is_next_to(who.norwegian, color.blue)
         )
         for drink in (Drink(*d) for d in orderings)
         if (
@@ -60,16 +66,8 @@ def _find_solutions():
         if (
             who.spaniard == pet.dog and
             smokes.old_gold == pet.snails and
-            _next_to(smokes.chesterfields, pet.fox) and
-            _next_to(smokes.kools, pet.horse)
+            is_next_to(smokes.chesterfields, pet.fox) and
+            is_next_to(smokes.kools, pet.horse)
         )
     ]
     return houses
-
-
-def _right_of(x, y):
-    return x - y == 1
-
-
-def _next_to(x, y):
-    return abs(x - y) == 1
