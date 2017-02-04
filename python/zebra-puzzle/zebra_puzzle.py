@@ -67,7 +67,6 @@ def _find_solutions():
     return houses
 
 
-
 def _right_of(x, y):
     return x - y == 1
 
