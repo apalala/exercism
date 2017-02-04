@@ -11,14 +11,16 @@ Drink = namedtuple('Drinks', 'coffee tea milk orange_juice, water')
 Smokes = namedtuple('Smokes', 'old_gold kools chesterfields lucky_strike parliaments')
 Pet = namedtuple('Pet', 'dog snails fox horse zebra')
 
+Houses = namedtuple('Houses', 'color who drink smokes pet')
+
 
 def solution():
-    houses = range(5)
-    first, second, middle, third, last = houses
+    house_numbers = range(5)
+    first, second, middle, third, last = house_numbers
 
-    orderings = list(tuple(p) for p in permutations(houses))
-    result = [
-        (color, who, drink, smokes, pet)
+    orderings = list(tuple(p) for p in permutations(house_numbers))
+    houses = [
+        Houses(color=color, who=who, drink=drink, smokes=smokes, pet=pet)
         for color in (Color(*c) for c in orderings)
         if (
             _right_of(color.green, color.ivory)
@@ -49,13 +51,15 @@ def solution():
             _next_to(smokes.kools, pet.horse)
         )
     ]
-    color, who, drink, smokes, pet = result[0]
+    result = houses[0]
 
-    who_names = {value: name.capitalize() for name, value in who._asdict().items()}
+    who_names = {
+        value: name.capitalize()
+        for name, value in result.who._asdict().items()}
     return (
         "It is the {} who drinks the water.\n"
         "The {} keeps the zebra."
-    ).format(who_names[drink.water], who_names[pet.zebra])
+    ).format(who_names[result.drink.water], who_names[result.pet.zebra])
 
 
 def _right_of(x, y):
