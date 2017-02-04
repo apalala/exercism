@@ -40,7 +40,7 @@ def _find_solutions():
     house_numbers = range(5)
     first, second, middle, third, last = house_numbers
 
-    orderings = list(tuple(p) for p in permutations(house_numbers))
+    orderings = list(permutations(house_numbers))
     return [
         Houses(color=color, person=person, drink=drink, smokes=smokes, pet=pet)
         for color in (Color(*c) for c in orderings)
