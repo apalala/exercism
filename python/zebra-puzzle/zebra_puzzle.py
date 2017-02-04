@@ -10,11 +10,24 @@ Who = namedtuple('Who', 'englishman spaniard ukranian japanese norwegian')
 Drink = namedtuple('Drinks', 'coffee tea milk orange_juice, water')
 Smokes = namedtuple('Smokes', 'old_gold kools chesterfields lucky_strike parliaments')
 Pet = namedtuple('Pet', 'dog snails fox horse zebra')
-
 Houses = namedtuple('Houses', 'color who drink smokes pet')
 
 
 def solution():
+    result = _find_solutions()[0]
+    who_names = {
+        value: name.capitalize()
+        for name, value in result.who._asdict().items()}
+    return (
+        "It is the {} who drinks the water.\n"
+        "The {} keeps the zebra."
+    ).format(
+        who_names[result.drink.water],
+        who_names[result.pet.zebra]
+    )
+
+
+def _find_solutions():
     house_numbers = range(5)
     first, second, middle, third, last = house_numbers
 
@@ -51,15 +64,8 @@ def solution():
             _next_to(smokes.kools, pet.horse)
         )
     ]
-    result = houses[0]
+    return houses
 
-    who_names = {
-        value: name.capitalize()
-        for name, value in result.who._asdict().items()}
-    return (
-        "It is the {} who drinks the water.\n"
-        "The {} keeps the zebra."
-    ).format(who_names[result.drink.water], who_names[result.pet.zebra])
 
 
 def _right_of(x, y):
