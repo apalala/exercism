@@ -29,7 +29,4 @@ class SpaceAge():
         for planet, ratio in PLANET_YEAR_RATIO.items():
             setattr(cls, 'on_%s' % planet.lower(), make_method(ratio))
 
-    def __getattr__(self, item):
-        if item.startswith('on_') and item[3:] in PLANET_YEAR_RATIO:
-            self.__static_init__()
-        return super().__getattribute__(item)
+SpaceAge.__static_init__()
