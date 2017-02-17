@@ -22,11 +22,10 @@ class SpaceAge():
         return self.seconds / EARTH_ORBITAL_SECONDS
 
     @classmethod
-    def __static_init__(cls):
+    def _setattr_per_planet_methods(cls):
         def make_method(ratio):
             return lambda self: round(self._on_earth_years() / ratio, 2)
-
         for planet, ratio in PLANET_YEAR_RATIO.items():
             setattr(cls, 'on_%s' % planet.lower(), make_method(ratio))
 
-SpaceAge.__static_init__()
+SpaceAge._setattr_per_planet_methods()
