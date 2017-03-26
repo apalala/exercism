@@ -41,7 +41,9 @@ func KindFromSides(a, b, c float64) Kind {
 
 type Kind byte
 
-const NaT = 0 // not a triangle
-const Equ = 1 // equilateral
-const Iso = 2 // isosceles
-const Sca = 3 // scalene
+const (
+	NaT Kind = iota // not a triangle
+	Equ  		// equilateral
+	Iso 		// isosceles
+	Sca		// scalene
+)
