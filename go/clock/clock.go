@@ -9,7 +9,7 @@ const testVersion = 4
 const minutesInDay = 24 * 60
 
 type Clock struct {
-	minute_of_the_day int;
+	minute_of_the_day int
 }
 
 func New(hour, minute int) Clock {
