@@ -43,7 +43,7 @@ type Kind byte
 
 const (
 	NaT Kind = iota // not a triangle
-	Equ  		// equilateral
-	Iso 		// isosceles
-	Sca		// scalene
+	Equ             // equilateral
+	Iso             // isosceles
+	Sca             // scalene
 )
