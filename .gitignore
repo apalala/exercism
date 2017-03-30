@@ -1,0 +1,6 @@
+.ropeproject
+__pycache__
+.cache
+.idea
+.orig
+.DS_Store
