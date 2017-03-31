@@ -24,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		CFE4B0D65CB4628A503D47AB /* hello-world */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = "hello-world"; sourceTree = "<group>"; };
+		CFE4B14300A896BE6434CE15 /* gigasecond */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = gigasecond; sourceTree = "<group>"; };
 		CFE4B962BB5EC6CE237B0D0D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CFE4BA0A51E4D38062F7FCFB /* swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swift; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE4BD6C368D0B5FD55BF570 /* leap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = leap; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 				CFE4B62BE4247C99B3330F70 /* swift */,
 				CFE4B0D65CB4628A503D47AB /* hello-world */,
 				CFE4BD6C368D0B5FD55BF570 /* leap */,
+				CFE4B14300A896BE6434CE15 /* gigasecond */,
 			);
 			sourceTree = "<group>";
 		};
