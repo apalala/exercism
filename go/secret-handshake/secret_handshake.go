@@ -16,13 +16,13 @@ func Handshake(code uint) []string {
 			result = append(result, handshakes[i])
 		}
 	}
-	if 1 << uint(len(handshakes)) & code != 0 {
+	if 1<<uint(len(handshakes))&code != 0 {
 		reverse(result)
 	}
 	return result
 }
 
-func reverse(slice []string) () {
+func reverse(slice []string) {
 	for i := 0; i < len(slice)/2; i++ {
 		j := len(slice) - i - 1
 		slice[i], slice[j] = slice[j], slice[i]
