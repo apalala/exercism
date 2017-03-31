@@ -23,6 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CFE4B087E046A74C67897EB2 /* nucleotide-count */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = "nucleotide-count"; sourceTree = "<group>"; };
 		CFE4B0D65CB4628A503D47AB /* hello-world */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = "hello-world"; sourceTree = "<group>"; };
 		CFE4B14300A896BE6434CE15 /* gigasecond */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = gigasecond; sourceTree = "<group>"; };
 		CFE4B21A003C984B6078A879 /* space-age */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = "space-age"; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 				CFE4B6AAE866A73B9C59EA6B /* bob */,
 				CFE4BCE3AB8CE80507035704 /* grains */,
 				CFE4BEE89B9AA42A806C3992 /* hamming */,
+				CFE4B087E046A74C67897EB2 /* nucleotide-count */,
 			);
 			sourceTree = "<group>";
 		};
