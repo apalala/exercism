@@ -32,7 +32,9 @@
 		CFE4B7C008F098AC04824CC5 /* sum-of-multiples */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = "sum-of-multiples"; sourceTree = "<group>"; };
 		CFE4B962BB5EC6CE237B0D0D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CFE4BA0A51E4D38062F7FCFB /* swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swift; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFE4BCE3AB8CE80507035704 /* grains */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = grains; sourceTree = "<group>"; };
 		CFE4BD6C368D0B5FD55BF570 /* leap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = leap; sourceTree = "<group>"; };
+		CFE4BEE89B9AA42A806C3992 /* hamming */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = hamming; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,8 @@
 				CFE4B7C008F098AC04824CC5 /* sum-of-multiples */,
 				CFE4B21A003C984B6078A879 /* space-age */,
 				CFE4B6AAE866A73B9C59EA6B /* bob */,
+				CFE4BCE3AB8CE80507035704 /* grains */,
+				CFE4BEE89B9AA42A806C3992 /* hamming */,
 			);
 			sourceTree = "<group>";
 		};
