@@ -1,7 +1,5 @@
 package diffsquares
 
-import "math"
-
 const testVersion = 1
 
 func Difference(n int) int {
@@ -9,8 +7,8 @@ func Difference(n int) int {
 }
 
 func SquareOfSums(n int) int {
-	var x = float64(n)
-	return int(math.Pow(x*(x+1)/2, 2))
+	var sum = n * (n + 1) / 2
+	return sum * sum
 }
 
 func SumOfSquares(n int) int {
