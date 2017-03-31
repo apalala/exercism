@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		CFE4B0D65CB4628A503D47AB /* hello-world */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = "hello-world"; sourceTree = "<group>"; };
 		CFE4B14300A896BE6434CE15 /* gigasecond */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = gigasecond; sourceTree = "<group>"; };
+		CFE4B21A003C984B6078A879 /* space-age */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = "space-age"; sourceTree = "<group>"; };
 		CFE4B428B7C649C1B651A6D7 /* difference-of-squares */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = "difference-of-squares"; sourceTree = "<group>"; };
 		CFE4B589E53CEBAF8B52319F /* rna-transcription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = "rna-transcription"; sourceTree = "<group>"; };
 		CFE4B7C008F098AC04824CC5 /* sum-of-multiples */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = "sum-of-multiples"; sourceTree = "<group>"; };
@@ -71,6 +72,7 @@
 				CFE4B428B7C649C1B651A6D7 /* difference-of-squares */,
 				CFE4B589E53CEBAF8B52319F /* rna-transcription */,
 				CFE4B7C008F098AC04824CC5 /* sum-of-multiples */,
+				CFE4B21A003C984B6078A879 /* space-age */,
 			);
 			sourceTree = "<group>";
 		};
